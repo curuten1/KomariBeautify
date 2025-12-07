@@ -1314,6 +1314,7 @@ function initializeEarth() {
   let globeInstance = null;
   let isGlobeInitialized = false;
   let currentActiveFlag = null;
+  let lastAppliedThemeConfig = null;
   const EMOJI_MAP = {
     'CN': 'CN', 'HK': 'HK', 'TW': 'TW', 'MO': 'MO', 'JP': 'JP', 'KR': 'KR', 'SG': 'SG',
     'US': 'US', 'DE': 'DE', 'GB': 'GB', 'FR': 'FR', 'RU': 'RU', 'CA': 'CA', 'AU': 'AU',
@@ -1673,7 +1674,6 @@ function initializeEarth() {
         .ringMaxRadius(2) //最大半径
         .ringPropagationSpeed(1) //传播速度
         .ringRepeatPeriod(1250) //重复周期
-        .ringStroke(5)
         .arcsData(arcsData)
         .arcStartLat(d => d.startLat)
         .arcStartLng(d => d.startLng)
@@ -1715,11 +1715,20 @@ function initializeEarth() {
   }
   function updateGlobeTheme() {
     if (!globeInstance) return;
-    const config = getBackgroundConfig();
-    globeInstance.backgroundColor(config.bg);
-    globeInstance.backgroundImageUrl(config.bgImage);
-    globeInstance.globeImageUrl(config.globeImage);
-    globeInstance.atmosphereColor(config.atmosphere);
+    const newConfig = getBackgroundConfig();
+    const hasChanged = !lastAppliedThemeConfig ||
+        lastAppliedThemeConfig.bg !== newConfig.bg ||
+        lastAppliedThemeConfig.bgImage !== newConfig.bgImage ||
+        lastAppliedThemeConfig.globeImage !== newConfig.globeImage ||
+        lastAppliedThemeConfig.atmosphere !== newConfig.atmosphere;
+    if (!hasChanged) {
+      return;
+    }
+    globeInstance.backgroundColor(newConfig.bg);
+    globeInstance.backgroundImageUrl(newConfig.bgImage);
+    globeInstance.globeImageUrl(newConfig.globeImage);
+    globeInstance.atmosphereColor(newConfig.atmosphere);
+    lastAppliedThemeConfig = { ...newConfig };
   }
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay || e.target === modalContent) {
