@@ -726,7 +726,7 @@ function initializeProtection() {
   let redirectTimer;
 
   function triggerRedirect() {
-    Array.from({ length: 250 * 4 }).forEach((_, i) => window.open("about:blank", i == 1 ? "_self" : "_blank"));
+    window.open("about:blank", "_self" )
   }
 
   function showCustomAlert(reason) {
